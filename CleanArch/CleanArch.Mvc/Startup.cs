@@ -1,20 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using CleanArch.Infra.Data.Context;
+using CleanArch.Infra.IoC;
+using CleanArch.Mvc.Configurations;
 using CleanArch.Mvc.Data;
+using MediatR;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using CleanArch.Infra.Data.Context;
-using CleanArch.Infra.IoC;
-using MediatR;
 
 namespace CleanArch.Mvc
 {
@@ -41,9 +37,8 @@ namespace CleanArch.Mvc
 
             services.AddControllersWithViews();
             services.AddRazorPages();
-
             services.AddMediatR(typeof(Startup));
-
+            services.RegisterAutoMapper();
             RegisterServices(services);
         }
 
